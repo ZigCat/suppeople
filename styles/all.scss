@@ -1,0 +1,16 @@
+@import './utils/vars.scss';
+
+body{
+    margin: 0px;
+}
+
+.container{
+    width: 1170px;
+    margin: 0 auto;
+}
+
+@import './components/product.scss';
+@import './components/search.scss';
+@import './components/layout.scss';
+
+@import './pages/main.scss';

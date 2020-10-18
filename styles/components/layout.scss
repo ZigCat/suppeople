@@ -1,0 +1,67 @@
+.layout{
+    &-top{
+        background-color: $dark-blue;
+
+        &_inner{
+            padding-right: 50px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            font-family: Arial;
+        }
+
+        &_item{
+            width: 40%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &_logo{
+            width: 150px;
+            height: 70px;
+            padding: 5px;
+        }
+
+        &_profile{
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+
+            img{
+                width: 40px;
+                height: 40px;
+            }
+
+            span{
+                color: white;
+            }
+        }
+
+        &_about{
+            font-size: 17px;
+
+            a{
+                text-decoration: none;
+                color: white;
+            }
+        }
+
+        &_reg{
+            button{
+                color: white;
+                background-color: $orange;
+                border: none;
+                border-radius: 10px;
+                width: 150px;
+                height: 40px;
+                font-size: 17px;
+            }
+        }
+    }
+}
