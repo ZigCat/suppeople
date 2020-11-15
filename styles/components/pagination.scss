@@ -1,0 +1,54 @@
+.pagination{
+    display: flex;
+    justify-content: center;
+
+    &_inner{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        
+        >span{
+            color: $green;
+            font-family: Arial;
+            font-size: 14px;
+            padding: 0 4px;
+            cursor: pointer;
+        }
+
+        .pagination_current{
+            font-size: 18px;
+        }
+    }
+
+    &_circles{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding: 0 5px;
+    }
+
+    &_circle{
+        margin: 0 2px;
+        border-radius: 50%;
+        background-color: $green;
+        width: 7.5px;
+        height: 7.5px;
+        
+        &:first-child{
+            width: 10px;
+            height: 10px;
+        }
+
+        &:last-child{
+            width: 5px;
+            height: 5px;
+        }
+    }
+
+    &_arrow{
+        
+        &-right{
+            transform: rotate(180deg);
+        }
+    }
+}

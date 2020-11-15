@@ -2,10 +2,13 @@ import '../styles/all.scss';
 import Layout from '../layouts/DefaultLayout';
 
 function MyApp({ Component, pageProps }) {
+
+  const MainLayout = Component.layout || Layout
+
   return(
-    <Layout>
+    <MainLayout>
       <Component {...pageProps} />
-    </Layout>
+    </MainLayout>
   );
 }
 

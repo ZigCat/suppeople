@@ -5,12 +5,33 @@ body{
 }
 
 .container{
-    width: 1170px;
+    width: 700px;
     margin: 0 auto;
+}
+
+.container-head{
+    width: 1300px;
+    margin: 0 auto;
+}
+
+@media all and (max-width: 800px) and (min-width: 500px){
+    .container-head{
+        width: 760px;
+    }
+
+    .container{
+        width: 500px;
+    }
 }
 
 @import './components/product.scss';
 @import './components/search.scss';
 @import './components/layout.scss';
+@import './components/select.scss';
+@import './components/blockpage.scss';
+@import './components/pagination.scss';
+@import './components/usermodal.scss';
 
 @import './pages/main.scss';
+@import './pages/registration.scss';
+@import './pages/user.scss';

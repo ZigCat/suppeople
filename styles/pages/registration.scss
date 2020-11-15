@@ -1,0 +1,123 @@
+.reg{
+    padding: 32px;
+    background: url('/reg_bg.svg') no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+
+    &-logo{
+        width: 400px;
+        margin: 0 auto;
+    }
+
+    &-inner{
+        margin: 0 auto;
+        padding: 32px;
+        width: 80%;
+        height: 550px;
+        border-radius: 50px;
+        background-color: white;
+        font-family: Arial;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 30px 30px $green;
+    }
+
+    &_title{
+        h2{
+            color: $blue;
+            font-size: 28px;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+    }
+
+    &_row{
+        width: 500px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .row{
+            width: 200px;
+        }
+    }
+
+    &_item{
+        border: 2px solid $blue;
+        border-radius: 10px;
+        width: 475px;
+        position: relative;
+        padding: 10px;
+        margin-top: 20px;
+
+        >span{
+            position: absolute;
+            background-color: white;
+            top: -10px;
+            color: $blue;
+        }
+
+        >input{
+            font-family: Arial;
+            font-size: 16px;
+            color: $dark-blue;
+            border: none;
+            outline: none;
+        }
+    }
+
+    .town{
+        border: none;
+        padding: 10px 0;
+
+        >span{
+            position: absolute;
+            top: 1px;
+            left: 13px;
+        }
+    }
+
+    .select-show{
+        padding: 15px;
+        width: 465px;
+        border: 2px solid $blue;
+        border-radius: 10px;
+        background-color: white;
+    }
+
+    &-buttons{
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        padding: 64px 0;
+
+        a{
+            text-decoration: none;
+        }
+    }
+
+    &_button{
+        cursor: pointer;
+        border-radius: 20px;
+        padding: 20px 30px;
+        color: white;
+        font-family: Arial;
+        font-size: 24px;
+
+        &:first-child{
+            background-color: $green;
+        }
+
+        &:last-child{
+            background-color: $dark-blue;
+        }
+    }
+
+    .select-dropdown_inner{
+        width: 300px;
+    }
+}

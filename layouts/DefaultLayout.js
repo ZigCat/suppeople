@@ -5,11 +5,11 @@ const Layout = ({children}) => {
     return(
         <div className="layout">
             <div className="layout-top">
-                <div className="container">
+                <div className="container-head">
                     <div className="layout-top_inner">
                         <div className="layout-top_item">
                             <div className="layout-top_logo">
-                                <a href="/"><img src="/logo.svg" alt="suppeople.kz"/></a>
+                                <a href="/"><img src="/logo-lay.svg" alt="suppeople.kz"/></a>
                             </div>
                             <Search />
                         </div>
@@ -18,11 +18,13 @@ const Layout = ({children}) => {
                                 <a href="#">О проекте</a>
                             </div>
                             <div className="layout-top_profile">
-                                <img src="/avatar.svg" alt=""/>
-                                <span>John Dodstermester</span>
+                                <a href="/user/user">
+                                    <img src="/avatar.svg" alt=""/>
+                                    <span>Dodstermester</span>
+                                </a>
                             </div>
                             <div className="layout-top_reg">
-                                <button>Регистрация</button>
+                                <a href="/registration">Регистрация</a>
                             </div>
                         </div>
                         </div>
