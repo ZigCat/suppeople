@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BlockPage from "../components/common/Block-Page";
 import request from "../services/request";
 
-const fetchCategory = () =>
+const fetchCategory = async () =>
   request
     .get("/category", {
       params: {
@@ -12,7 +12,7 @@ const fetchCategory = () =>
     .then((res) => res.data)
     .catch((err) => console.log(err));
 
-const fetchPosts = () =>
+const fetchPosts = async () =>
   request
     .get("/post", {
       params: {
@@ -49,7 +49,7 @@ export async function getServerSideProps() {
   // );
   const res = await fetchCategory();
   const post = await fetchPosts();
-
+  
   return {
     props: {
       data: {

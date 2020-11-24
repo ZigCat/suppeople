@@ -4,8 +4,13 @@ import Pagination from "./Pagination";
 import Product from "./Product";
 import Select from "./Select";
 
-const BlockPage = ({ title = "Посты", data }) => {
-
+const BlockPage = ({
+  title = "Посты",
+  data,
+  user = true,
+  postPhase,
+  changePhase,
+}) => {
   const [posts, setPosts] = useState(data.posts);
 
   const byClickCategory = async (id) =>
@@ -16,7 +21,10 @@ const BlockPage = ({ title = "Посты", data }) => {
           size: 3,
         },
       })
-      .then((res) => {setPosts(res.data);console.log(res.data)})
+      .then((res) => {
+        setPosts(res.data);
+        console.log(res.data);
+      })
       .catch((err) => console.log(err));
 
   const option1 = [
@@ -28,7 +36,7 @@ const BlockPage = ({ title = "Посты", data }) => {
   const [select1, changeSelect1] = useState(option1[0]);
   const [active1, setActive1] = useState(false);
 
-  const [category, setCategory] = useState(data.categories[0]);
+  const [category, setCategory] = useState({ id: "999", name: "категория..." });
   const [activeCategory, setCategoryActive] = useState(false);
 
   const [pagination, changePagination] = useState(2);
@@ -38,25 +46,45 @@ const BlockPage = ({ title = "Посты", data }) => {
       <div className="container">
         <div className="blockpage-inner">
           <div className="blockpage-title">
-            <h2>{title}</h2>
+            {user ? (
+              <h2>{title}</h2>
+            ) : (
+              <>
+                <div className="blockpage-title_headers">
+                  <div onClick={() => changePhase(false)} className={`blockpage-title_mine ${!postPhase ? `act` : null}`}>Мои посты</div>
+                  <span>|</span>
+                  <div onClick={() => changePhase(true)} className={`blockpage-title_other ${postPhase ? `act` : null}`}>Выполняемые</div>
+                </div>
+              </>
+            )}
           </div>
           <div className="blockpage_filter">
-            <h4>Фильтр</h4>
-            <Select
-              options={option1}
-              selectedItem={select1}
-              changeSelect={changeSelect1}
-              isActive={active1}
-              setActive={setActive1}
-            />
-            <Select
-              options={data.categories}
-              selectedItem={category}
-              changeSelect={setCategory}
-              isActive={activeCategory}
-              setActive={setCategoryActive}
-              byClick={byClickCategory}
-            />
+            {user ? (
+              <>
+                <h4>Фильтр</h4>
+                <Select
+                  options={option1}
+                  selectedItem={select1}
+                  changeSelect={changeSelect1}
+                  isActive={active1}
+                  setActive={setActive1}
+                />
+                <Select
+                  options={data.categories}
+                  selectedItem={category}
+                  changeSelect={setCategory}
+                  isActive={activeCategory}
+                  setActive={setCategoryActive}
+                  byClick={byClickCategory}
+                />
+              </>
+            ) : (
+              <>
+                <h4>Категории</h4>
+                <div className="blockpage_filter_active">активные</div>
+                <div className="blockpage_filter_disactivated">неактивные</div>
+              </>
+            )}
           </div>
           <div className="blockpage_items">
             {posts.map((item) => {

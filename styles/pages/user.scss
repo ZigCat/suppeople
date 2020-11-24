@@ -1,161 +1,167 @@
-.user{
+.user {
+  &-bio {
+    width: 96%;
+    height: 80px;
+    padding: 0 40px;
+    padding-right: 10px;
+    margin-bottom: 75px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 
-    &-bio{
-        width: 96%;
-        height: 80px;
-        padding: 0 40px;
-        padding-right: 10px;
-        margin-bottom: 75px;
-        margin-top: 20px;
+    &-bg {
+      margin-top: 25px;
+      background: linear-gradient(to right, white 60%, $green);
+      width: 50%;
+      height: 80px;
+      margin-right: -13px;
+    }
+
+    &-container {
+      display: flex;
+      flex-direction: row;
+      width: 25%;
+      max-width: 320px;
+      justify-content: space-between;
+    }
+
+    &_avatar {
+      img {
+        margin-top: 15px;
+        border-radius: 50%;
+        border: 5px solid $blue;
+        width: 100px;
+        height: 100px;
+      }
+    }
+
+    &_info {
+      font-family: Arial;
+      display: flex;
+      flex-direction: column;
+
+      h4 {
+        font-size: 30px;
+        color: $dark-blue;
+        margin-bottom: -5px;
+      }
+
+      &-trust {
+        color: $blue;
+        font-size: 14px;
+      }
+
+      &-city {
+        font-size: 16px;
+        color: $orange;
+
+        img {
+          width: 15px;
+          height: 15px;
+        }
+      }
+    }
+  }
+
+  &-tabs {
+    &_map {
+      display: flex;
+      flex-direction: row;
+      border-top: 1px solid $green;
+      border-bottom: 1px solid $green;
+
+      &-item {
+        padding: 25px 40px;
+        border-left: 1px solid $green;
+        border-right: none;
+        color: $dark-blue;
+        font-family: Arial;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+
+        &:last-child {
+          border-right: 1px solid $green;
+        }
+      }
+    }
+
+    &_post {
+        background: url('/background.svg') no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        padding: 32px 64px;
+    }
+
+    &_contacts {
+      &-items {
+        background: url("/bg-contacts.svg") no-repeat;
+        background-size: cover;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-around;
+        padding: 250px 300px;
+      }
 
-        &-bg{
-            margin-top: 25px;
-            background: linear-gradient(to right, white 60%, $green);
-            width: 50%;
-            height: 80px;
-            margin-right: -13px;
+      &-item {
+        display: flex;
+        flex-direction: column;
+
+        span {
+          margin: 0 auto;
+          font-size: 30px;
+          color: $dark-blue;
+          font-family: Arial;
+
+          &:first-child {
+            font-weight: 600;
+          }
         }
 
-        &-container{
-            display: flex;
-            flex-direction: row;
-            width: 25%;
-            max-width: 320px;
-            justify-content: space-between;
+        img {
+          width: 20px;
+          height: 20px;
         }
-
-        &_avatar{
-            img{
-                margin-top: 15px;
-                border-radius: 50%;
-                border: 5px solid $blue;
-                width: 100px;
-                height: 100px;
-            }
-        }
-
-        &_info{
-            font-family: Arial;
-            display: flex;
-            flex-direction: column;
-
-            h4{
-                font-size: 30px;
-                color: $dark-blue;
-                margin-bottom: -5px;
-            }
-
-            &-trust{
-                color: $blue;
-                font-size: 14px;
-            }
-
-            &-city{
-                font-size: 16px;
-                color: $orange;
-
-                img{
-                    width: 15px;
-                    height: 15px;
-                }
-            }
-        }
+      }
     }
 
-    &-tabs{
-        &_map{
-            display: flex;
-            flex-direction: row;
-            border-top: 1px solid $green;
-            border-bottom: 1px solid $green;
+    &_ach {
+      &-items {
+        background-color: $bg-blue;
+      }
 
-            &-item{
-                padding: 25px 40px;
-                border-left: 1px solid $green;
-                border-right: none;
-                color: $dark-blue;
-                font-family: Arial;
-                font-size: 18px;
-                font-weight: 700;
-                cursor: pointer;
+      &-row {
+        width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        padding-right: 60px;
+      }
 
-                &:last-child{
-                    border-right: 1px solid $green;
-                }
-            }
+      &-item {
+        padding: 0 30px;
+        img {
+          width: 266px;
+          height: 310px;
         }
-
-        &_contacts{
-            &-items{
-                background: url('/bg-contacts.svg') no-repeat;
-                background-size: cover;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-around;
-                padding: 250px 300px;
-            }
-
-            &-item{
-                display: flex;
-                flex-direction: column;
-
-                span{
-                    margin: 0 auto;
-                    font-size: 30px;
-                    color: $dark-blue;
-                    font-family: Arial;
-
-                    &:first-child{
-                        font-weight: 600;
-                    }
-                }
-
-                img{
-                    width: 20px;
-                    height: 20px;
-                }
-            }
-        }
-
-        &_ach{
-            &-items{
-                background-color: $bg-blue;
-            }
-
-            &-row{
-                width: 1200px;
-                margin: 0 auto;
-                display: flex;
-                flex-direction: row;
-                padding-right: 60px;
-            }
-
-            &-item{
-                padding: 0 30px;
-                img{
-                    width: 266px;
-                    height: 310px;
-                }
-            }
-        }
+      }
     }
+  }
 }
 
-.active-tab{
-    background-color: rgba($color: $green, $alpha: 0.2);
+.active-tab {
+  background-color: rgba($color: $green, $alpha: 0.2);
 }
 
-@media all and (max-width: 2000px) and (min-width: 1200px){
-    .user{
-        &-tabs{
-            &_ach{
-                &-item{
-                    
-                }
-            }
+@media all and (max-width: 2000px) and (min-width: 1200px) {
+  .user {
+    &-tabs {
+      &_ach {
+        &-item {
         }
+      }
     }
+  }
 }

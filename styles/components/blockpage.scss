@@ -12,6 +12,45 @@
             color: $dark-blue;
             font-weight: 600;
         }
+
+        &_headers{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        span{
+            color: $dark-blue;
+            padding: 0 20px;
+            font-size: 30px;
+            font-weight: 900;
+        }
+
+        &_mine{
+            cursor: pointer;
+            font-size: 35px;
+            font-family: Calibri;
+            color: $dark-blue;
+            border-radius: 20px;
+            padding: 7px 30px;
+        }
+
+        &_other{
+            cursor: pointer;
+            font-size: 35px;
+            font-family: Calibri;
+            color: $dark-blue;
+            border-radius: 20px;
+            padding: 7px 30px;
+        }
+
+        .act{
+            background-color: rgba($color: $blue, $alpha: 0.5);
+        }
     }
 
     &_filter{
@@ -25,6 +64,28 @@
             font-family: Arial;
             color: $dark-blue;
             font-weight: 100;
+        }
+
+        &_active{
+            padding: 7px 40px;
+            background-color: rgba($color: $light-green, $alpha: 0.3);
+            border-radius: 20px;
+            border: 2px solid $dark-blue;
+            font-size: 18px;
+            font-family: Arial;
+            color: $dark-blue;
+            cursor: pointer;
+        }
+
+        &_disactivated{
+            padding: 7px 35px;
+            background: rgba($color: $orange, $alpha: 0.5);
+            border-radius: 20px;
+            border: 2px solid $dark-blue;
+            font-size: 18px;
+            font-family: Arial;
+            color: $dark-blue;
+            cursor: pointer;
         }
 
         .select{
