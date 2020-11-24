@@ -58,16 +58,17 @@ const User = () => {
             {activeTab === 1 ? <div className="user-tabs_contacts">
               <div className="user-tabs_contacts-items">
                 <div className="user-tabs_contacts-item">
-                  <span></span>
-                  <span></span>
-                  <span></span>
+                  <span>John Dodster</span>
+                  <span>06.06.2020</span>
+                  <span><img src="/pin-contact.svg" alt=""/>г.Алматы, Казахстан</span>
                 </div>
                 <div className="user-tabs_contacts-item">
-                  <span></span>
-                  <span></span>
+                  <span>Телефон:</span>
+                  <span>+77081234567</span>
                 </div>
                 <div className="user-tabs_contacts-item">
-                  <span></span>
+                  <span>Email:</span>
+                  <span>jdoe@gmail.com</span>
                 </div>
               </div>
             </div> : null }
