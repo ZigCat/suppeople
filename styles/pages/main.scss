@@ -1,0 +1,14 @@
+.main-banner{
+    width: 100%;
+    height: 50vh;
+    background: url('/banner.svg') no-repeat;
+    background-size: 100%;
+}
+
+.main-product{
+    padding: 32px 64px;
+    background: url('/background.svg') no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+}

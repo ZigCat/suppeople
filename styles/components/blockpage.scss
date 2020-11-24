@@ -1,0 +1,62 @@
+.blockpage{
+
+    &-inner{
+        background-color: white;
+        padding: 2px 40px;
+    }
+
+    &-title{
+        h2{
+            font-size: 40px;
+            font-family: Arial;
+            color: $dark-blue;
+            font-weight: 600;
+        }
+    }
+
+    &_filter{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        h4{
+            font-size: 20px;
+            font-family: Arial;
+            color: $dark-blue;
+            font-weight: 100;
+        }
+
+        .select{
+            padding: 0 30px;
+            text-transform: lowercase;
+
+            &-show{
+                background: $turquoise;
+            }
+        }
+
+        :last-child{
+            .select-show{
+                background: $light-purple;
+            }
+        }
+    }
+
+    &_item{
+        padding: 40px 0px;
+    }
+}
+
+@media all and (max-width: 800px) and (min-width: 500px){
+    .blockpage{
+        &_inner{
+            padding: 20px 0;
+        }
+
+        &_item{
+            width: 50%;
+            padding: 10px 0px;
+        }
+    }
+}

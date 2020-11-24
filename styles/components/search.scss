@@ -1,0 +1,21 @@
+.search{
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 15px;
+
+    img{
+        width: 30px;
+        height: 30px;
+    }
+
+    &-form{
+        width: 400px;
+        input{
+            width: 95%;
+            outline: none;
+            border: none;
+            color: $dark-blue;
+        }
+    }
+}
