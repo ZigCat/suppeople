@@ -29,6 +29,7 @@
 
         .select{
             padding: 0 30px;
+            text-transform: lowercase;
 
             &-show{
                 background: $turquoise;

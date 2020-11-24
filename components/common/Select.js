@@ -6,7 +6,8 @@ const Select = ({
   setActive,
   selectedItem,
   changeSelect,
-  valueKey = 'name',
+  valueKey = "name",
+  byClick = null,
 }) => {
   // if (process.browser && isActive) {
   //   window.addEventListener('click', event => {
@@ -31,7 +32,12 @@ const Select = ({
             <div className="select-dropdown_items">
               {options.map((item) => (
                 <div className="select-dropdown_item">
-                  <span onClick={() => changeSelect(item)}>
+                  <span
+                    onClick={() => {
+                      changeSelect(item);
+                      byClick !== null ? byClick(item.id) : null;
+                    }}
+                  >
                     {item[valueKey]}
                   </span>
                 </div>

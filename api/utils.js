@@ -9,13 +9,3 @@ export const getCities = () =>
         })
         .then(res => res.data)
         .catch(err => err.response);
-
-export const getCategories = () => 
-        request
-            .get('/category', {
-                params: {
-                    size: 8,
-                }
-            })
-            .then(res => res.data)
-            .catch(err => err.response);

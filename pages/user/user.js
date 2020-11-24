@@ -9,7 +9,7 @@ const User = () => {
         <div className="user-bio">
           <div className="user-bio-container">
             <div className="user-bio_avatar">
-              <img src="/mistake.jpg" alt="" />
+              <img src="/avatar.svg" alt="" />
             </div>
             <div className="user-bio_info">
               <h4>John Dodster</h4>
