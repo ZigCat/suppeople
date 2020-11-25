@@ -23,8 +23,6 @@ const fetchPosts = async () =>
 
 const Main = ({ data }) => {
   const [category, SetCategory] = useState(data.categories[0]);
-
-  console.log(category);
   return (
     <div>
       <div className="main-banner"></div>

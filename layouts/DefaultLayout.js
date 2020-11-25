@@ -1,29 +1,24 @@
 import React, { useState, useEffect } from "react";
 import Search from "../components/common/Search";
-import request from '../services/request';
+import request from "../services/request";
 
 const Layout = ({ children }) => {
   const [user, setUser] = useState();
   const fetchUser = async () => {
-      let req = '/user'/+localStorage.getItem('id');
     request
-      .get(
-        req,
-        {
-          auth: {
-            username: localStorage.getItem("login"),
-            password: localStorage.getItem("password"),
-          },
-        }
-      )
-      .then((res) => res.data)
+      .get("/users", {
+        params: {
+          id: localStorage.getItem("id"),
+        },
+      })
+      .then((res) => setUser(res.data[0]))
       .catch((err) => console.log(err));
-    }
+  };
 
   useEffect(() => {
-      setUser(fetchUser());
+    fetchUser();
   }, []);
-  console.log(user);
+
   return (
     <div className="layout">
       <div className="layout-top">
@@ -44,7 +39,7 @@ const Layout = ({ children }) => {
               <div className="layout-top_profile">
                 <a href="/user/user">
                   <img src="/avatar.svg" alt="" />
-                  <span>Dodster</span>
+                  <span>{user === undefined ? 'user' : user.fname}</span>
                 </a>
               </div>
               <div className="layout-top_reg">
