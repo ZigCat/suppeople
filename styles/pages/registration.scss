@@ -3,7 +3,7 @@
     background: url('/reg_bg.svg') no-repeat;
     background-attachment: fixed;
     background-size: cover;
-    height: 92vh;
+    height: calc(550px+30%);
 
     &-logo{
         width: 400px;

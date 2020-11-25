@@ -10,6 +10,8 @@ const BlockPage = ({
   user = true,
   postPhase,
   changePhase,
+  isEmpty,
+  emptyMessage,
 }) => {
   const [posts, setPosts] = useState(data.posts);
 
@@ -87,7 +89,12 @@ const BlockPage = ({
             )}
           </div>
           <div className="blockpage_items">
-            {posts.map((item) => {
+            {isEmpty ? 
+            <div className="blockpage_empty">
+              {emptyMessage}
+            </div>
+            :
+            posts.map((item) => {
               return (
                 <div className="blockpage_item">
                   <Product

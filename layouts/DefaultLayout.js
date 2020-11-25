@@ -37,7 +37,7 @@ const Layout = ({ children }) => {
                 <a href="#">О проекте</a>
               </div>
               <div className="layout-top_profile">
-                <a href="/user/user">
+                <a href={`${user === undefined ? null : `/user/${user.id}`}`}>
                   <img src="/avatar.svg" alt="" />
                   <span>{user === undefined ? 'user' : user.fname}</span>
                 </a>

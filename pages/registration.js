@@ -48,6 +48,7 @@ const Registration = ({ cities }) => {
     setStatus(res.status);
     const id = await fetchRegisteredUser(form.email);
     console.log(id[0].id);
+    localStorage.clear();
     localStorage.setItem('id', id[0].id);
     localStorage.setItem('login', form.email);
     localStorage.setItem('password', form.password);
