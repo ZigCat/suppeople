@@ -1,0 +1,72 @@
+.usermodal {
+  position: absolute;
+  margin-left: 95px;
+  margin-top: 5px;
+
+  &-inner {
+    width: 200px;
+    background-color: white;
+    border-radius: 10px;
+    border-top-left-radius: 0px;
+    border: 1px solid $blue;
+    border-right: 4px solid $blue;
+    border-bottom: 4px solid $blue;
+  }
+
+  &-name {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    img{
+        width: 35px;
+        height: 35px;
+    }
+
+    span {
+      color: $dark-blue;
+      font-weight: 600;
+    }
+  }
+
+  &-settings {
+      padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+
+    a {
+      color: $light-green;
+      text-decoration: none;
+    }
+
+    &_block {
+      padding: 10px 0;
+      display: flex;
+      flex-direction: column;
+
+      a {
+        text-decoration: none;
+        padding: 5px 0;
+        color: $text-blue;
+
+        &:first-child {
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  &-exit{
+      padding: 0 15px;
+      width: 85%;
+      border-top: 2px solid $orange;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      a{
+          color: $orange;
+        text-decoration: none;
+      }
+  }
+}

@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Search from "../components/common/Search";
+import UserModal from "../components/user/UserModal";
 import request from "../services/request";
 
-const Layout = ({ children }) => {
+const Layout = ({ children}) => {
   const [user, setUser] = useState();
+  const [openModal, changeModal] = useState(false);
+
   const fetchUser = async () => {
     request
       .get("/users", {
@@ -37,10 +40,11 @@ const Layout = ({ children }) => {
                 <a href="#">О проекте</a>
               </div>
               <div className="layout-top_profile">
-                <a href={`${user === undefined ? null : `/user/${user.id}`}`}>
+                <a onClick={() => changeModal(!openModal)}>
                   <img src="/avatar.svg" alt="" />
-                  <span>{user === undefined ? 'user' : user.fname}</span>
+                  <span>{user ? user.fname : 'Загрузка...'}</span>
                 </a>
+                {openModal ? <UserModal user={user}/> : null}
               </div>
               <div className="layout-top_reg">
                 <a href="/registration">Регистрация</a>

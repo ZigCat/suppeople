@@ -35,8 +35,6 @@ const User = ({ data }) => {
     fetchThisUser();
   }, [])
 
-  console.log(data.posts);
-
   return (
     <div className="user">
       <div className="user-inner">

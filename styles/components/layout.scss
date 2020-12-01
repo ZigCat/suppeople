@@ -31,7 +31,10 @@
     }
 
     &_profile {
-      a {
+      position: relative;
+
+      
+      &> a {
         cursor: pointer;
         display: flex;
         flex-direction: row;
