@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import request from "../../services/request";
 import Pagination from "./Pagination";
+import PostModal from "./PostModal";
 import Product from "./Product";
 import Select from "./Select";
 
@@ -8,6 +9,7 @@ const BlockPage = ({
   title = "Посты",
   data,
   user = true,
+  userData,
   postPhase,
   changePhase,
   isEmpty,
@@ -35,6 +37,8 @@ const BlockPage = ({
     { name: "по убыванию", id: 3 },
   ];
 
+  const [activeModal, setModal] = useState(false);
+
   const [select1, changeSelect1] = useState(option1[0]);
   const [active1, setActive1] = useState(false);
 
@@ -53,9 +57,23 @@ const BlockPage = ({
             ) : (
               <>
                 <div className="blockpage-title_headers">
-                  <div onClick={() => changePhase(false)} className={`blockpage-title_mine ${!postPhase ? `act` : null}`}>Мои посты</div>
+                  <div
+                    onClick={() => changePhase(false)}
+                    className={`blockpage-title_mine ${
+                      !postPhase ? `act` : null
+                    }`}
+                  >
+                    Мои посты
+                  </div>
                   <span>|</span>
-                  <div onClick={() => changePhase(true)} className={`blockpage-title_other ${postPhase ? `act` : null}`}>Выполняемые</div>
+                  <div
+                    onClick={() => changePhase(true)}
+                    className={`blockpage-title_other ${
+                      postPhase ? `act` : null
+                    }`}
+                  >
+                    Выполняемые
+                  </div>
                 </div>
               </>
             )}
@@ -89,28 +107,57 @@ const BlockPage = ({
             )}
           </div>
           <div className="blockpage_items">
-            {isEmpty ? 
-            <div className="blockpage_empty">
-              {emptyMessage}
-            </div>
-            :
-            posts.map((item) => {
-              return (
-                <div className="blockpage_item">
-                  <Product
-                    username={item.user.fname + " " + item.user.lname}
-                    trustLevel="10"
-                    city={item.user.city.city}
-                    img={
-                      item.image === null
-                        ? "placeholder-image.svg"
-                        : `posters/${item.image}`
-                    }
-                    message={item.message}
-                  />
-                </div>
-              );
-            })}
+            {!user ? <div
+              onClick={() => setModal(true)}
+              className="blockpage_items-create"
+            >
+              + создать пост
+            </div> : null}
+            {activeModal ? (
+              <PostModal
+                categories={data.categories}
+                user={userData}
+                setActive={setModal}
+              />
+            ) : null}
+            {isEmpty ? (
+              <div className="blockpage_empty">{emptyMessage}</div>
+            ) : null}
+            {!postPhase
+              ? posts.map((item) => {
+                  return (
+                    <div className="blockpage_item">
+                      <Product
+                        username={item.user.fname + " " + item.user.lname}
+                        trustLevel="10"
+                        city={item.user.city.city}
+                        img={
+                          item.image === null
+                            ? "placeholder-image.svg"
+                            : `posters/${item.image}`
+                        }
+                        message={item.message}
+                      />
+                    </div>
+                  );
+                })
+              : data.apps.map((item) => {
+                  return (
+                    <div className="blockpage_item">
+                      <Product
+                        username={
+                          item.applicationUser.fname +
+                          " " +
+                          item.applicationUser.lname
+                        }
+                        trustLevel="10"
+                        city={item.applicationUser.city.city}
+                        img="placeholder-image.svg"
+                        message={item.message}
+                      />
+                    </div>
+                  );
+                })}
           </div>
         </div>
       </div>

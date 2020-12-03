@@ -1,4 +1,3 @@
-import { urlObjectKeys } from "next/dist/next-server/lib/utils";
 import React, { useEffect, useState } from "react";
 import BlockPage from "../../components/common/Block-Page";
 import request from "../../services/request";
@@ -13,6 +12,25 @@ const fetchUserPosts = async (id) =>
     })
     .catch((err) => console.log(err));
 
+const fetchCategory = async () =>
+  request
+    .get("/category", {
+      params: {
+        size: 7,
+      },
+    })
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+
+const fetchUserApplications = async (id) => 
+  request
+    .get('/postApplication', {
+      params:{
+        user: id,
+      }
+    })
+    .catch(err => console.log(err));
+
 const User = ({ data }) => {
   const [activeTab, changeActive] = useState(0);
 
@@ -21,19 +39,21 @@ const User = ({ data }) => {
   const [user, setUser] = useState();
 
   const fetchThisUser = async () =>
-  request
-    .get(`/users/${data.id}`, {
-      auth: {
-        username: localStorage.getItem('login'),
-        password: localStorage.getItem('password'),
-      },
-    })
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err));
+    request
+      .get(`/users/${data.id}`, {
+        auth: {
+          username: localStorage.getItem("login"),
+          password: localStorage.getItem("password"),
+        },
+      })
+      .then((res) => setUser(res.data))
+      .catch((err) => console.log(err));
 
   useEffect(() => {
     fetchThisUser();
-  }, [])
+  }, []);
+
+  console.log(user);
 
   return (
     <div className="user">
@@ -44,11 +64,11 @@ const User = ({ data }) => {
               <img src="/avatar.svg" alt="" />
             </div>
             <div className="user-bio_info">
-              <h4>User Account</h4>
+              <h4>{user ? user.fname + " " + user.lname : "User Account"}</h4>
               <span className="user-bio_info-trust">уровень доверия 10</span>
               <span className="user-bio_info-city">
                 <img src="/pin.svg" alt="" />
-                Алматы
+                {user ? user.city.city : "City"}
               </span>
             </div>
           </div>
@@ -88,10 +108,11 @@ const User = ({ data }) => {
                   title="Мои посты"
                   data={data}
                   user={false}
+                  userData={user}
                   postPhase={postPhase}
                   changePhase={changePhase}
-                  isEmpty={data.posts !== [] || user === undefined}
-                  emptyMessage='У Вас еще нет постов :('
+                  isEmpty={(data.posts === [] || data.apps === []) && user}
+                  emptyMessage="У Вас еще нет постов :("
                 />
               </div>
             ) : null}
@@ -99,20 +120,20 @@ const User = ({ data }) => {
               <div className="user-tabs_contacts">
                 <div className="user-tabs_contacts-items">
                   <div className="user-tabs_contacts-item">
-                    <span>User</span>
-                    <span>06.06.2020</span>
+                    <span>{user ? user.fname+" "+user.lname : 'Пользователь'}</span>
+                    <span>{user ? user.dateOfBirthday : '1973-01-01'}</span>
                     <span>
                       <img src="/pin-contact.svg" alt="" />
-                      г.Алматы, Казахстан
+                      г.{user ? user.city.city : 'Алматы'}, Казахстан
                     </span>
                   </div>
                   <div className="user-tabs_contacts-item">
                     <span>Телефон:</span>
-                    <span>+77081234567</span>
+                    <span>{user ? user.phone : "+77000000000"}</span>
                   </div>
                   <div className="user-tabs_contacts-item">
                     <span>Email:</span>
-                    <span>jdoe@gmail.com</span>
+                    <span>{user ? user.email : "email@gmail.com"}</span>
                   </div>
                 </div>
               </div>
@@ -160,11 +181,15 @@ const User = ({ data }) => {
 
 export async function getServerSideProps(context) {
   const posts = await fetchUserPosts(context.params.id);
+  const apps = await fetchUserApplications(context.params.id);
+  const categories = await fetchCategory();
   const id = context.params.id;
 
   return {
     props: {
       data: {
+        categories: categories,
+        apps: apps.data,
         posts: posts.data,
         pagesize: posts.headers["total-pages"],
         id: id,

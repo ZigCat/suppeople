@@ -1,0 +1,138 @@
+.postmodal{
+    z-index: 15;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: black, $alpha: 0.5);
+
+    &-inner{
+        margin: 0 auto;
+        margin-top: 120px;
+        padding: 20px 70px;
+        width: 1000px;
+        border-radius: 30px;
+        background-color: white;
+    }
+
+    &-top{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 25px;
+
+        &_user{
+            display: flex;
+            flex-direction: row;
+
+            &-avatar{
+                padding-right: 15px;
+                img{
+                    width: 120px;
+                    height: 120px;
+                }
+            }
+
+            &-info{
+                display: flex;
+                flex-direction: column;
+
+                h2{
+                    margin-top: 20px;
+                    margin-bottom: 10px;
+                    font-family: Arial;
+                    color: $dark-blue;
+                }
+
+                .select{
+                    &-show{
+                        background-color: white;
+                        border-radius: 10px;
+                    }
+
+                    &-dropdown{
+                        &_inner{
+                            border: 2px solid $green;
+                            border-top-right-radius: 0;
+                        }
+                    }
+                }
+            }
+        }
+
+        &_img{
+            margin-right: 100px;
+            margin-top: 50px;
+            color: $green;
+            font-size: 14px;
+            font-family: Arial;
+            border: 2px solid $green;
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+
+            img{
+                padding-left: 40px;
+                width: 15px;
+                height: 15px;
+            }
+        }
+    }
+
+    &-desc{
+        textarea{
+            width: 950px;
+            resize: none;
+            outline: none;
+            border-radius: 20px;
+            border: 2px solid $blue;
+            padding: 20px 10px;
+            font-size: 16px;
+            color: $blue;
+            font-family: Arial;
+
+            &::placeholder{
+                color: $blue;
+                font-family: Arial;
+                font-size: 16px;
+            }
+        }
+    }
+
+    &-buttons{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &-button{
+        border-radius: 25px;
+        font-size: 20px;
+        font-family: Arial;
+        margin-top: 20px;
+        cursor: pointer;
+
+        &:first-child{
+            padding: 10px 60px;
+            border: 2px solid $orange;
+            background: rgba($color: $orange, $alpha: 0.4);
+            color: $orange;
+        }
+
+        &:last-child{
+            margin-right: 22px;
+            padding: 10px 40px;
+            border: 2px solid $dark-blue;
+            background: $bg-blue;
+            color: $dark-blue;
+        }
+
+        img{
+            width: 15px;
+            height: 15px;
+            padding-right: 5px;
+        }
+    }
+}

@@ -1,6 +1,6 @@
 .blockpage {
   &_empty {
-    width: 300px;
+    width: 40%;
     padding-top: 50px;
     padding-bottom: 50px;
     padding-left: 50px;
@@ -117,6 +117,21 @@
 
   &_item {
     padding: 40px 0px;
+  }
+
+  &_items{
+    padding: 30px 0;
+    &-create{
+      cursor: pointer;
+      border-radius: 20px;
+      background: $orange;
+      color: white;
+      padding: 10px 20px;
+      font-family: Arial;
+      font-size: 20px;
+      width: 23%;
+      margin: 0 auto;
+    }
   }
 }
 

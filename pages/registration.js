@@ -2,25 +2,18 @@ import React, { useState } from "react";
 import Select from "../components/common/Select";
 import { registration } from "../api/registration";
 import { getCities } from "../api/utils";
-import request from "../services/request";
-
-const fetchRegisteredUser = (email) =>
-  request
-    .get("/users", {
-      params: {
-        email: email,
-      },
-    })
-    .then((res) => res.data)
-    .catch((err) => console.log(err));
+import {validateEmail, validatePhone} from '../services/validator';
 
 const Registration = ({ cities }) => {
   const [status, setStatus] = useState(0);
   const [isActive, setActive] = useState(false);
+  const [validMail, setValidMail] = useState(true);
+  const [validPhone, setValidPhone] = useState(true);
   const [selectedItem, changeSelect] = useState({
     id: 999,
     city: "Выберите город...",
   });
+
   const [form, setForm] = useState({
     fname: "",
     lname: "",
@@ -45,13 +38,21 @@ const Registration = ({ cities }) => {
 
   const handleSubmit = async () => {
     const res = await registration(form);
-    setStatus(res.status);
-    const id = await fetchRegisteredUser(form.email);
-    console.log(id[0].id);
-    localStorage.clear();
-    localStorage.setItem('id', id[0].id);
-    localStorage.setItem('login', form.email);
-    localStorage.setItem('password', form.password);
+    if(validPhone && validMail){
+      if (res !== undefined) {
+        let id = res.data;
+        console.log(id);
+        localStorage.clear();
+        localStorage.setItem("id", id.id);
+        localStorage.setItem("login", id.email);
+        localStorage.setItem("password", form.password);
+        setStatus(201);
+      } else {
+        setStatus(600);
+      }
+    } else {
+      setStatus(601)
+    }
   };
 
   return (
@@ -62,100 +63,23 @@ const Registration = ({ cities }) => {
         </a>
       </div>
       <div className="container">
-        {status === 0 ? (
-          <>
-            <div className="reg-inner">
-              <div className="reg_title">
-                <h2>регистрация</h2>
-              </div>
-              <form action="">
-                <div className="reg_row">
-                  <div className="reg_item row">
-                    <span>Фамилия</span>
-                    <input
-                      type="text"
-                      value={form.lname}
-                      onChange={(e) => handleForm("lname", e.target.value)}
-                    />
-                  </div>
-                  <div className="reg_item row">
-                    <span>Имя</span>
-                    <input
-                      type="text"
-                      value={form.fname}
-                      onChange={(e) => handleForm("fname", e.target.value)}
-                    />
-                  </div>
-                </div>
-                <div className="reg_item">
-                  <span>Телефон</span>
-                  <input
-                    type="tel"
-                    value={form.phone}
-                    onChange={(e) => handleForm("phone", e.target.value)}
-                  />
-                </div>
-                <div className="reg_item">
-                  <span>Email</span>
-                  <input
-                    type="email"
-                    value={form.email}
-                    onChange={(e) => handleForm("email", e.target.value)}
-                  />
-                </div>
-                <div className="reg_item">
-                  <span>Пароль</span>
-                  <input
-                    type="password"
-                    value={form.password}
-                    onChange={(e) => handleForm("password", e.target.value)}
-                  />
-                </div>
-                <div className="reg_item">
-                  <span>Дата рождения</span>
-                  <input
-                    type="date"
-                    value={form.dateOfBirthday}
-                    onChange={(e) =>
-                      handleForm("dateOfBirthday", e.target.value)
-                    }
-                  />
-                </div>
-                <div className="reg_item town">
-                  <span>Город</span>
-                  <Select
-                    options={cities}
-                    isActive={isActive}
-                    setActive={setActive}
-                    selectedItem={selectedItem}
-                    changeSelect={handleCity}
-                    valueKey="city"
-                  />
-                </div>
-              </form>
-            </div>
-            <div className="reg-buttons">
-              <div className="reg_button">Вход</div>
-              <a>
-                <div onClick={handleSubmit} className="reg_button">
-                  Регистрация
-                </div>
-              </a>
-            </div>
-          </>
-        ) : null}
         {status === 201 ? (
           <div className="reg-inner">
             <div className="reg_title">
               <h2>Регистрация прошла успешно</h2>
             </div>
           </div>
-        ) : null}
-        {status !== 0 && status !== 201 ? (
+        ) : (
           <>
             <div className="reg-inner">
               <div className="reg_title">
-                <h2>Что-то пошло не так, повторите попытку</h2>
+                <h2>
+                  {status === 0 ? "регистрация" : null}
+                  {status === 601 ? "Заполните все необходимые поля" : null}
+                  {status !== 0 && status !== 201 && status !== 601
+                    ? "Что-то пошло не так, повторите попытку"
+                    : null}
+                </h2>
               </div>
               <form action="">
                 <div className="reg_row">
@@ -176,20 +100,26 @@ const Registration = ({ cities }) => {
                     />
                   </div>
                 </div>
-                <div className="reg_item">
+                <div className={`reg_item ${!validPhone ? ` valid` : ``}`}>
                   <span>Телефон</span>
                   <input
                     type="tel"
                     value={form.phone}
-                    onChange={(e) => handleForm("phone", e.target.value)}
+                    onChange={(e) => {
+                      handleForm("phone", e.target.value);
+                      setValidPhone(validatePhone(e.target.value));
+                    }}
                   />
                 </div>
-                <div className="reg_item">
+                <div className={`reg_item ${!validMail ? ` valid` : ``}`}>
                   <span>Email</span>
                   <input
                     type="email"
                     value={form.email}
-                    onChange={(e) => handleForm("email", e.target.value)}
+                    onChange={(e) => {
+                      handleForm("email", e.target.value);
+                      setValidMail(validateEmail(e.target.value));
+                    }}
                   />
                 </div>
                 <div className="reg_item">
@@ -224,15 +154,15 @@ const Registration = ({ cities }) => {
               </form>
             </div>
             <div className="reg-buttons">
-              <div className="reg_button">Вход</div>
-              <a>
-                <div onClick={handleSubmit} className="reg_button">
-                  Регистрация
-                </div>
+              <a href="/login" className="reg_button">
+                Вход
+              </a>
+              <a onClick={handleSubmit} className="reg_button">
+                Регистрация
               </a>
             </div>
           </>
-        ) : null}
+        )}
       </div>
     </div>
   );
