@@ -2,16 +2,6 @@ import React, { useEffect, useState } from "react";
 import BlockPage from "../../components/common/Block-Page";
 import request from "../../services/request";
 
-const fetchUserPosts = async (id) =>
-  request
-    .get("/post", {
-      params: {
-        size: 3,
-        user: id,
-      },
-    })
-    .catch((err) => console.log(err));
-
 const fetchCategory = async () =>
   request
     .get("/category", {
@@ -22,14 +12,23 @@ const fetchCategory = async () =>
     .then((res) => res.data)
     .catch((err) => console.log(err));
 
-const fetchUserApplications = async (id) => 
+const fetchUserPosts = async (id) =>
   request
-    .get('/postApplication', {
-      params:{
+    .get("/post", {
+      params: {
         user: id,
-      }
+      },
     })
-    .catch(err => console.log(err));
+    .catch((err) => console.log(err));
+
+const fetchUserApplications = async (id) =>
+  request
+    .get("/postApplication", {
+      params: {
+        user: id,
+      },
+    })
+    .catch((err) => console.log(err));
 
 const User = ({ data }) => {
   const [activeTab, changeActive] = useState(0);
@@ -52,8 +51,6 @@ const User = ({ data }) => {
   useEffect(() => {
     fetchThisUser();
   }, []);
-
-  console.log(user);
 
   return (
     <div className="user">
@@ -111,8 +108,9 @@ const User = ({ data }) => {
                   userData={user}
                   postPhase={postPhase}
                   changePhase={changePhase}
-                  isEmpty={(data.posts === [] || data.apps === []) && user}
-                  emptyMessage="У Вас еще нет постов :("
+                  owner={
+                    user ? String(user.id) === localStorage.getItem("id") : null
+                  }
                 />
               </div>
             ) : null}
@@ -120,11 +118,13 @@ const User = ({ data }) => {
               <div className="user-tabs_contacts">
                 <div className="user-tabs_contacts-items">
                   <div className="user-tabs_contacts-item">
-                    <span>{user ? user.fname+" "+user.lname : 'Пользователь'}</span>
-                    <span>{user ? user.dateOfBirthday : '1973-01-01'}</span>
+                    <span>
+                      {user ? user.fname + " " + user.lname : "Пользователь"}
+                    </span>
+                    <span>{user ? user.dateOfBirthday : "1973-01-01"}</span>
                     <span>
                       <img src="/pin-contact.svg" alt="" />
-                      г.{user ? user.city.city : 'Алматы'}, Казахстан
+                      г.{user ? user.city.city : "Алматы"}, Казахстан
                     </span>
                   </div>
                   <div className="user-tabs_contacts-item">
@@ -191,7 +191,6 @@ export async function getServerSideProps(context) {
         categories: categories,
         apps: apps.data,
         posts: posts.data,
-        pagesize: posts.headers["total-pages"],
         id: id,
       },
     },

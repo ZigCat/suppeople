@@ -20,8 +20,6 @@ const Login = () => {
   const handleSubmit = async () => {
     if (validLogin) {
       const res = await login(form);
-      console.log("here");
-      console.log(res);
       if (res !== undefined) {
         let id = res.data;
         console.log(id);

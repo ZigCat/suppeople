@@ -1,151 +1,158 @@
-.post{
-    width: 750px;
+.post {
+  width: 750px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__top {
+    width: 75%;
+    height: 250px;
+    background-color: $bg-blue;
+    padding: 18px 30px;
     display: flex;
-    flex-direction: column;
-    position: relative;
+    flex-direction: row;
+    justify-content: space-between;
 
-    &__top{
-        width: 75%;
-        height: 250px;
-        background-color: $bg-blue;
-        padding: 18px 30px;
+    &_owner {
+      display: flex;
+      flex-direction: row;
+      width: 70%;
+
+      &-desc {
+        padding-left: 20px;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        flex-direction: column;
 
-        &_owner{
-            display: flex;
-            flex-direction: row;
-            width: 70%;
-
-            &-desc{
-                padding-left: 20px;
-                display: flex;
-                flex-direction: column;
-
-                span{
-                    font-family: Arial;
-                }
-
-                &-trust{
-                    font-size: 14px;
-                    color: $blue;
-                }
-
-                &-city{
-                    margin-top: 6px;
-                    font-size: 16px;
-                    color: $dark-green;
-
-                    >img{
-                        width: 15px;
-                        height: 15px;
-                    }
-                }
-
-                h3{
-                    font-size: 24px;
-                    font-family: Arial;
-                    color: $dark-blue;
-                    margin-bottom: 2px;
-                }
-            }
-
-            &-avatar{
-                border-radius: 50%;
-                border: 5px solid $blue;
-                width: 100px;
-                height: 100px;
-            }
+        span {
+          font-family: Arial;
         }
 
-        &_img{
-            border-radius: 50px;
-            border: 5px solid $green;
-            width: 150px;
-            height: 100px;
+        &-trust {
+          font-size: 14px;
+          color: $blue;
         }
-    }
 
-    &__desc{
-        width: 70%;
-        height: 120px;
-        background-color: white;
-        border-radius: 60px;
-        border: 2px solid $light-green;
-        margin-top: -150px;
-        margin-left: 25px;
-        padding: 0 24px;
-        color:$dark-blue;
-        font-family: Arial;
-        font-weight: 600;
-        font-size: 18px;
-    }
+        &-city {
+          margin-top: 6px;
+          font-size: 16px;
+          color: $dark-green;
 
-    &__buttons{
-        width: 620px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        margin-top: 45px;
-        margin-left: -22px; 
-    }
-
-    &__button{
-        cursor: pointer;
-        font-family: Arial;
-        font-size: 16px;
-        font-weight: 700;
-        border-radius: 20px;
-        border: 2px solid $dark-blue;
-        color: $dark-blue;
-        padding: 5px 20px;
-        display: flex;
-        align-items: center;
-        margin-left: 40px;
-
-        >img{
-            padding-right: 10px;
+          > img {
             width: 15px;
             height: 15px;
+          }
         }
 
-        &:last-child{
-            padding: 5px 35px;
+        h3 {
+          font-size: 24px;
+          font-family: Arial;
+          margin-bottom: 2px;
+
+          a {
+            text-decoration: none;
+            color: $dark-blue;
+          }
         }
+      }
+
+      &-avatar {
+        border-radius: 50%;
+        border: 5px solid $blue;
+        width: 100px;
+        height: 100px;
+      }
     }
+
+    &_img {
+      border-radius: 50px;
+      border: 5px solid $green;
+      width: 150px;
+      height: 100px;
+    }
+  }
+
+  &__desc {
+    width: 70%;
+    height: 120px;
+    background-color: white;
+    border-radius: 60px;
+    border: 2px solid $light-green;
+    margin-top: -150px;
+    margin-left: 25px;
+    padding: 0 24px;
+    color: $dark-blue;
+    font-family: Arial;
+    font-weight: 600;
+    font-size: 18px;
+
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &__buttons {
+    width: 620px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 45px;
+    margin-left: -22px;
+  }
+
+  &__button {
+    cursor: pointer;
+    font-family: Arial;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 20px;
+    border: 2px solid $dark-blue;
+    color: $dark-blue;
+    padding: 5px 20px;
+    display: flex;
+    align-items: center;
+    margin-left: 40px;
+
+    > img {
+      padding-right: 10px;
+      width: 15px;
+      height: 15px;
+    }
+
+    &:last-child {
+      padding: 5px 35px;
+    }
+  }
 }
 
-@media all and (max-width: 800px) and (min-width: 500px){
-    .post{
-        &__top{
-            width: 100%;
-            height: 70px;
+@media all and (max-width: 800px) and (min-width: 500px) {
+  .post {
+    &__top {
+      width: 100%;
+      height: 70px;
 
-            &_owner{
-                
-            }
-        }
-
-        &__desc{
-            width: 100%;
-            height: 70px;
-        }
-
-        &__buttons{
-            width: 40%;
-            margin-left: -20px;
-            margin-top: 60px;
-        }
-
-        &__button{
-            font-size: 8px;
-            
-            >img{
-                width: 10px;
-                height: 10px;
-            }
-        }
+      &_owner {
+      }
     }
 
+    &__desc {
+      width: 100%;
+      height: 70px;
+    }
+
+    &__buttons {
+      width: 40%;
+      margin-left: -20px;
+      margin-top: 60px;
+    }
+
+    &__button {
+      font-size: 8px;
+
+      > img {
+        width: 10px;
+        height: 10px;
+      }
+    }
+  }
 }

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { unstable_renderSubtreeIntoContainer } from "react-dom";
 import request from "../../services/request";
 import Pagination from "./Pagination";
 import PostModal from "./PostModal";
@@ -12,8 +13,7 @@ const BlockPage = ({
   userData,
   postPhase,
   changePhase,
-  isEmpty,
-  emptyMessage,
+  owner,
 }) => {
   const [posts, setPosts] = useState(data.posts);
 
@@ -46,9 +46,19 @@ const BlockPage = ({
   const [activeCategory, setCategoryActive] = useState(false);
 
   const [pagination, changePagination] = useState(2);
+  const [checkUser, setCheck] = useState(false);
+
+  const checkActiveUser = () => {
+    return localStorage.getItem("id") === user.id;
+  };
+
+  useEffect(() => {
+    setCheck(checkActiveUser());
+  }, []);
 
   return (
     <div className="blockpage">
+      {console.log(checkUser)}
       <div className="container">
         <div className="blockpage-inner">
           <div className="blockpage-title">
@@ -107,12 +117,14 @@ const BlockPage = ({
             )}
           </div>
           <div className="blockpage_items">
-            {!user ? <div
-              onClick={() => setModal(true)}
-              className="blockpage_items-create"
-            >
-              + создать пост
-            </div> : null}
+            { owner ? 
+              <div
+                onClick={() => setModal(true)}
+                className="blockpage_items-create"
+              >
+                + создать пост
+              </div> : null
+            }
             {activeModal ? (
               <PostModal
                 categories={data.categories}
@@ -120,23 +132,19 @@ const BlockPage = ({
                 setActive={setModal}
               />
             ) : null}
-            {isEmpty ? (
-              <div className="blockpage_empty">{emptyMessage}</div>
-            ) : null}
             {!postPhase
               ? posts.map((item) => {
                   return (
                     <div className="blockpage_item">
                       <Product
-                        username={item.user.fname + " " + item.user.lname}
+                        item={item}
                         trustLevel="10"
-                        city={item.user.city.city}
                         img={
                           item.image === null
                             ? "placeholder-image.svg"
                             : `posters/${item.image}`
                         }
-                        message={item.message}
+                        profileButton={owner}
                       />
                     </div>
                   );
