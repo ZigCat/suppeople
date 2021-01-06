@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { unstable_renderSubtreeIntoContainer } from "react-dom";
-import request from "../../services/request";
 import Pagination from "./Pagination";
 import PostModal from "./PostModal";
 import Product from "./Product";
 import Select from "./Select";
+import request from "../../services/request";
 
 const BlockPage = ({
   title = "Посты",
@@ -16,20 +15,6 @@ const BlockPage = ({
   owner,
 }) => {
   const [posts, setPosts] = useState(data.posts);
-
-  const byClickCategory = async (id) =>
-    request
-      .get("/post", {
-        params: {
-          category: id,
-          size: 3,
-        },
-      })
-      .then((res) => {
-        setPosts(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
 
   const option1 = [
     { name: "по дате добавления", id: 1 },
@@ -45,20 +30,42 @@ const BlockPage = ({
   const [category, setCategory] = useState({ id: "999", name: "категория..." });
   const [activeCategory, setCategoryActive] = useState(false);
 
-  const [pagination, changePagination] = useState(2);
-  const [checkUser, setCheck] = useState(false);
+  const [pagination, changePagination] = useState(1);
 
-  const checkActiveUser = () => {
-    return localStorage.getItem("id") === user.id;
-  };
+  const byClickCategory = async (id) =>
+    request
+      .get("/post", {
+        params: {
+          category: id,
+          size: 3,
+        },
+      })
+      .then((res) => {
+        setPosts(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+
+  const paginationByClick = async (page) =>
+    request
+      .get("/post", {
+        params: {
+          size: 3,
+          page: page,
+        },
+      })
+      .then((res) => {
+        setPosts(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
 
   useEffect(() => {
-    setCheck(checkActiveUser());
-  }, []);
+    paginationByClick(pagination);
+  }, [pagination]);
 
   return (
     <div className="blockpage">
-      {console.log(checkUser)}
       <div className="container">
         <div className="blockpage-inner">
           <div className="blockpage-title">
@@ -117,14 +124,14 @@ const BlockPage = ({
             )}
           </div>
           <div className="blockpage_items">
-            { owner ? 
+            {owner ? (
               <div
                 onClick={() => setModal(true)}
                 className="blockpage_items-create"
               >
                 + создать пост
-              </div> : null
-            }
+              </div>
+            ) : null}
             {activeModal ? (
               <PostModal
                 categories={data.categories}
@@ -166,6 +173,11 @@ const BlockPage = ({
                     </div>
                   );
                 })}
+            <Pagination
+              selectedItem={pagination}
+              changeSelect={changePagination}
+              length={data.pagesize}
+            />
           </div>
         </div>
       </div>
