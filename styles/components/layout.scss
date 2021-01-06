@@ -2,6 +2,10 @@
   &-top {
     background-color: $dark-blue;
 
+    &_mob{
+      display: none;
+    }
+    
     &_inner {
       display: flex;
       flex-direction: row;
@@ -14,27 +18,25 @@
       display: flex;
       flex-direction: row;
       align-items: center;
-
-      &:first-child {
-        justify-content: space-around;
-        padding-right: 50px;
-      }
     }
 
     &_logo {
       width: 150px;
       padding: 5px;
 
-      img{
+      img {
         height: 50px;
+
+        &:last-child {
+          display: none;
+        }
       }
     }
 
     &_profile {
       position: relative;
 
-      
-      &> a {
+      & > a {
         cursor: pointer;
         display: flex;
         flex-direction: row;
@@ -78,48 +80,162 @@
     }
   }
 
-  &-inner{
+  &-inner {
     overflow: auto;
     height: 100%;
   }
 
-  &-bottom{
+  &-bottom {
+    width: 100%;
     background: $dark-blue;
     margin-top: -20px;
 
-    &_inner{
+    &_inner {
       padding: 20px;
       font-family: Arial;
     }
 
-    &_logo{
-      width: 300px;
-      margin-left: -40px;
-      img{
+    &_logo {
+      width: 60%;
+      margin-left: -265px;
+      img {
         width: 100%;
         height: 100px;
       }
     }
 
-    &_desc{
+    &_desc {
       margin-bottom: 20px;
       display: flex;
       flex-direction: column;
 
-      span{
+      span {
         color: white;
         font-size: 16px;
       }
     }
 
-    &_copyright{
+    &_copyright {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
 
-      span{
+      span {
         color: $blue;
         font-size: 15px;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 500px) and (min-width: 300px) {
+  .layout {
+    &-top {
+      padding: 0 20px;
+      padding-bottom: 0px;
+
+      &_inner {
+        padding-right: 15px;
+      }
+
+      &_about{
+        a{
+          font-size: 13px;
+        }
+      }
+
+      &_logo {
+        width: 50px;
+        img {
+          &:first-child {
+            display: none;
+          }
+
+          &:last-child {
+            display: block;
+          }
+        }
+      }
+
+      &_search {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 70px;
+        margin-left: 20px;
+        width: 90%;
+
+        .search {
+          border: 2px solid $orange;
+          width: 100%;
+        }
+      }
+
+      &_reg {
+        display: none;
+      }
+
+      &_profile {
+        display: none;
+      }
+
+      &_mob {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        &_profile {
+          & > a {
+            cursor: pointer;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            width: 100px;
+            text-decoration: none;
+          }
+
+          img {
+            width: 40px;
+            height: 40px;
+          }
+
+          span {
+            color: white;
+            font-size: 13px;
+          }
+        }
+        &_menu {
+          padding-left: 20px;
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
+      }
+    }
+
+    &-bottom{
+      &_logo{
+        margin: 0;
+      }
+
+      &_inner{
+        width: 90%;
+      }
+
+      &_desc{
+        span{
+          font-size: 14px;
+        }
+      }
+
+      &_copyright{
+        width: 90%;
+
+        span{
+          font-size: 9px;
+        }
       }
     }
   }

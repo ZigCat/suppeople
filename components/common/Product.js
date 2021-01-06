@@ -1,7 +1,7 @@
 import React from "react";
 import request from "../../services/request";
 
-const Product = ({ item, trustLevel, img, profileButton = false }) => {
+const Product = ({ item, trustLevel, img, profileButton = false, yourPost = false }) => {
   const deletePost = async (id) =>
     request
       .patch(
@@ -19,7 +19,7 @@ const Product = ({ item, trustLevel, img, profileButton = false }) => {
   const processDelete = async () => {
     let res = await deletePost(item.id);
     console.log(res);
-    window.location.reload();
+    //window.location.reload();
   };
   return (
     <>
@@ -65,6 +65,7 @@ const Product = ({ item, trustLevel, img, profileButton = false }) => {
               </div>
             </>
           )}
+          {!yourPost ? <div className="post__button ac-but">Откликнуться</div> : null}
           <div className="post__button">
             <img src="/like.svg" alt="" />
             Избранное

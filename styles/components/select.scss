@@ -68,3 +68,27 @@
         background-color: white;
     }
 }
+
+@media all and (max-width: 500px) and (min-width: 300px){
+    .select{
+        &-show{
+            border-radius: 10px;
+            padding: 5px;
+            >span{
+                font-size: 12px;
+            }
+        }
+
+        &-dropdown{
+            &_inner{
+                width: 150px;
+            }
+
+            &_item{
+                >span{
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}

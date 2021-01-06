@@ -29,13 +29,23 @@ body{
     background: $dark-blue; 
   }
 
-@media all and (max-width: 800px) and (min-width: 500px){
+@media all and (max-width: 350px){
     .container-head{
-        width: 760px;
+        width: 300px;
     }
 
     .container{
-        width: 500px;
+        width: 280px;
+    }
+}
+
+@media all and (max-width: 500px) and (min-width: 351px){
+    .container-head{
+        width: 330px;
+    }
+
+    .container{
+        width: 330px;
     }
 }
 

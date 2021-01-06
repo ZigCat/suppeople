@@ -135,15 +135,48 @@
   }
 }
 
-@media all and (max-width: 800px) and (min-width: 500px) {
+@media all and (max-width: 500px) and (min-width: 300px) {
   .blockpage {
-    &_inner {
-      padding: 20px 0;
+    &-inner {
+      padding: 10px;
+    }
+
+    &-title{
+      h2{
+        font-size: 25px;
+        margin: 0;
+        font-weight: 300;
+      }
+    }
+
+    &_filter{
+      width: 20%;
+      h4{
+        font-size: 15px;
+        padding-right: 20px;
+      }
+
+      .select{
+        padding: 0 10px;
+      }
     }
 
     &_item {
-      width: 50%;
+      width: 100%;
       padding: 10px 0px;
+    }
+  }
+}
+
+@media all and (max-width: 330px) and (min-width: 300px){
+  .blockpage{
+    &_filter{
+      h4{
+        padding: 0;
+      }
+      .select{
+        width: 85px;
+      }
     }
   }
 }

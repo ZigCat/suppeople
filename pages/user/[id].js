@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import BlockPage from "../../components/common/Block-Page";
+import { fetchUserPosts } from "../../api/posts";
+import UserPage from "../../components/user/UserPage";
 import request from "../../services/request";
 
 const fetchCategory = async () =>
@@ -12,29 +13,8 @@ const fetchCategory = async () =>
     .then((res) => res.data)
     .catch((err) => console.log(err));
 
-const fetchUserPosts = async (id) =>
-  request
-    .get("/post", {
-      params: {
-        user: id,
-      },
-    })
-    .catch((err) => console.log(err));
-
-const fetchUserApplications = async (id) =>
-  request
-    .get("/postApplication", {
-      params: {
-        user: id,
-      },
-    })
-    .catch((err) => console.log(err));
-
 const User = ({ data }) => {
   const [activeTab, changeActive] = useState(0);
-
-  const [postPhase, changePhase] = useState(false);
-
   const [user, setUser] = useState();
 
   const fetchThisUser = async () =>
@@ -101,17 +81,7 @@ const User = ({ data }) => {
           <div className="user-tabs_items">
             {activeTab === 0 ? (
               <div className="user-tabs_post">
-                <BlockPage
-                  title="Мои посты"
-                  data={data}
-                  user={false}
-                  userData={user}
-                  postPhase={postPhase}
-                  changePhase={changePhase}
-                  owner={
-                    user ? String(user.id) === localStorage.getItem("id") : null
-                  }
-                />
+                <UserPage data={data} user={user} />
               </div>
             ) : null}
             {activeTab === 1 ? (
@@ -180,17 +150,15 @@ const User = ({ data }) => {
 };
 
 export async function getServerSideProps(context) {
-  const posts = await fetchUserPosts(context.params.id);
-  const apps = await fetchUserApplications(context.params.id);
-  const categories = await fetchCategory();
   const id = context.params.id;
+  const categories = await fetchCategory();
+  const post = await fetchUserPosts(id);
 
   return {
     props: {
       data: {
+        pages: post.headers["total-pages"],
         categories: categories,
-        apps: apps.data,
-        posts: posts.data,
         id: id,
       },
     },

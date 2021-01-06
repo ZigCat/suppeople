@@ -7,19 +7,16 @@ import request from "../services/request";
 const Layout = ({ children }) => {
   const [user, setUser] = useState();
   const [openModal, changeModal] = useState(false);
-  const [isActiveSearch, setActiveSearch] = useState(false); 
+  const [isActiveSearch, setActiveSearch] = useState(false);
   const [searchData, setSearchData] = useState([]);
 
-  const fetchUser = async () => {
+  const fetchUser = async () =>
     request
-      .get("/users", {
-        params: {
-          id: localStorage.getItem("id"),
-        },
+      .get(`/users/${localStorage.getItem("id")}`)
+      .then((res) => {
+        setUser(res.data);
       })
-      .then((res) => setUser(res.data[0]))
       .catch((err) => console.log(err));
-  };
 
   useEffect(() => {
     fetchUser();
@@ -34,11 +31,12 @@ const Layout = ({ children }) => {
               <div className="layout-top_logo">
                 <a href="/">
                   <img src="/logo-lay.svg" alt="suppeople.kz" />
+                  <img src="/raw-logo.png" alt="suppeople.kz" />
                 </a>
               </div>
               <div className="layout-top_search">
-                <Search setShow={setActiveSearch} setUser={setSearchData}/>
-                {isActiveSearch ? <SearchModal data={searchData}/> : null}
+                <Search setShow={setActiveSearch} setUser={setSearchData} />
+                {isActiveSearch ? <SearchModal data={searchData} /> : null}
               </div>
             </div>
             <div className="layout-top_item">
@@ -61,6 +59,21 @@ const Layout = ({ children }) => {
                   </span>
                 </a>
                 {openModal ? <UserModal user={user} /> : null}
+              </div>
+              <div className="layout-top_mob">
+                <div className="layout-top_mob_profile">
+                  <a>
+                    <img src="/avatar.svg" alt="" />
+                    <span>
+                      {user && localStorage.getItem("login")
+                        ? user.fname
+                        : "Пользователь"}
+                    </span>
+                  </a>
+                </div>
+                <div className="layout-top_mob_menu">
+                  <img src="/list.svg" alt="" />
+                </div>
               </div>
               <div className="layout-top_reg">
                 <a href="/registration">Регистрация</a>

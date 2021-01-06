@@ -6,9 +6,9 @@ const Search = ({setShow, setUser}) => {
 
     const searchUser = async (data) => 
         request
-            .get('/users/', {
+            .get('/search', {
                 params:{
-                    lname:data,
+                    searchString:data,
                 }
             })
             .then(res => res.data)
