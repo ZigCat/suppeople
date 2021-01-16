@@ -156,3 +156,94 @@
     outline: none;
   }
 }
+
+@media all and (max-width: 500px) and (min-width: 300px){
+  .reg{
+    padding: 3px;
+    background-size: cover;
+    height: auto;
+
+    &-logo{
+      width: 60%;
+    }
+
+    &-inner{
+      border-radius: 30px;
+      padding: 5px;
+      box-shadow: 10px 10px $dark-blue;
+      width: 90%;
+      height: 420px;
+    }
+
+    &_title{
+      padding: 0 10px;
+
+      h2{
+        font-size: 20px;
+      }
+    }
+
+    &_row{
+      width: 210px;
+
+      .row{
+        width: 90px;
+
+        >input{
+          width: 90px;
+          font-size: 12px;
+        }
+      }
+    }
+
+    &_item{
+      width: 200px;
+      padding: 5px;
+
+      >span{
+        font-size: 12px;
+      }
+
+      >input{
+        width: 180px;
+        font-size: 12px;
+      }
+    }
+
+    .select-show{
+      width: 180px;
+      border-radius: 20px;
+    }
+
+    .select-dropdown_inner{
+      width: 150px;
+    }
+
+    .reg-login {
+      box-shadow: 10px 10px $green;
+      height: 200px;
+    }
+
+    &-buttons{
+      padding: 30px 5px;
+    }
+
+    &_button{
+      font-size: 15px;
+
+      &:first-child {
+        background-color: $green;
+        padding: 10px 35px;
+      }
+  
+      &:last-child {
+        background-color: $dark-blue;
+        padding: 10px 15px;
+      }
+    }
+  }
+
+  .reg-all-login{
+    padding: 40px 12px;
+  }
+}

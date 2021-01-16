@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Search from "../components/common/Search";
 import SearchModal from "../components/common/SearchModal";
+import MobileModal from "../components/mobile/MobileModal";
 import UserModal from "../components/user/UserModal";
 import request from "../services/request";
 
@@ -8,6 +9,7 @@ const Layout = ({ children }) => {
   const [user, setUser] = useState();
   const [openModal, changeModal] = useState(false);
   const [isActiveSearch, setActiveSearch] = useState(false);
+  const [mobModal, changeMobModal] = useState(false);
   const [searchData, setSearchData] = useState([]);
 
   const fetchUser = async () =>
@@ -72,7 +74,7 @@ const Layout = ({ children }) => {
                   </a>
                 </div>
                 <div className="layout-top_mob_menu">
-                  <img src="/list.svg" alt="" />
+                  <img src="/list.svg" alt="" onClick={() => changeMobModal(true)}/>
                 </div>
               </div>
               <div className="layout-top_reg">
@@ -82,6 +84,9 @@ const Layout = ({ children }) => {
           </div>
         </div>
       </div>
+      {mobModal ? (
+        <MobileModal user={user} closeModal={changeMobModal}/>
+      ) : null}
       <div className="layout-inner">{children}</div>
       <div className="layout-bottom">
         <div className="container-head">

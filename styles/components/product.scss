@@ -172,7 +172,6 @@
 
           &-city{
             font-size: 9px;
-            margin-top: -1px;
 
             img{
               width: 10px;
@@ -182,6 +181,7 @@
         }
 
         &-avatar{
+          margin-left: 10px;
           border: 2px solid $blue;
           width: 30px;
           height: 30px;

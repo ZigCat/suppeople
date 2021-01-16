@@ -11,6 +11,7 @@
     border-left: 1px solid $blue;
     border-right: 4px solid $blue;
     border-bottom: 4px solid $blue;
+    overflow: scroll;
 
     &-inner{
         padding: 10px 0;
@@ -52,5 +53,33 @@
         font-size: 16px;
         margin: 0 auto;
         color: $dark-blue;
+    }
+}
+
+@media all and (max-width: 500px) and (min-width: 300px){
+    .searchmodal{
+        width: 90%;
+
+        &-item{
+            width: 92%;
+
+            &-name{
+                font-size: 15px;
+            }
+
+            &-city{
+                font-size: 12px;
+
+                img{
+                    width: 10px;
+                    height: 10px;
+                }
+            }
+        }
+
+        &-empty{
+            font-size: 15px;
+            width: 140px;
+        }
     }
 }

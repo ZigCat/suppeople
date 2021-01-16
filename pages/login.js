@@ -37,7 +37,7 @@ const Login = () => {
   };
 
   return (
-    <div className="reg">
+    <div className="reg reg-all-login">
       <div className="reg-logo">
         <a href="/">
           <img src="/logo-blue.svg" alt="" />
@@ -55,7 +55,7 @@ const Login = () => {
             <div className="reg-inner reg-login">
               <div className="reg_title">
                 <h2>
-                {status === 0 ? "регистрация" : null}
+                {status === 0 ? "вход" : null}
                   {status === 601 ? "Заполните все необходимые поля" : null}
                   {status !== 0 && status !== 201 && status !== 601
                     ? "Что-то пошло не так, повторите попытку"

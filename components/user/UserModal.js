@@ -21,7 +21,7 @@ const UserModal = ({user}) => {
                     </div>
                 </div>
                 <div className="usermodal-exit">
-                    <a href="/registration" onClick={() => localStorage.clear()}>Выход</a>
+                    <a href="/login" onClick={() => localStorage.clear()}>Выход</a>
                     <img src="/exit.svg" alt=""/>
                 </div>
             </div>

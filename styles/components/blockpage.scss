@@ -142,6 +142,8 @@
     }
 
     &-title{
+      width: 90px;
+      margin: 0 auto;
       h2{
         font-size: 25px;
         margin: 0;
@@ -150,33 +152,23 @@
     }
 
     &_filter{
-      width: 20%;
+      display: flex;
+      flex-direction: column;
+
       h4{
-        font-size: 15px;
+        font-size: 20px;
+        margin: 16px 0 8px;
         padding-right: 20px;
       }
 
       .select{
-        padding: 0 10px;
+        padding: 4px 8px;
       }
     }
 
     &_item {
       width: 100%;
       padding: 10px 0px;
-    }
-  }
-}
-
-@media all and (max-width: 330px) and (min-width: 300px){
-  .blockpage{
-    &_filter{
-      h4{
-        padding: 0;
-      }
-      .select{
-        width: 85px;
-      }
     }
   }
 }
