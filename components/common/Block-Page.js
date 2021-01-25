@@ -3,12 +3,11 @@ import Pagination from "./Pagination";
 import Product from "./Product";
 import Select from "./Select";
 import request from "../../services/request";
+import PostApplicationModal from "./PostApplicationModal";
 
-const BlockPage = ({
-  data,
-  owner,
-}) => {
+const BlockPage = ({ data, owner }) => {
   const [posts, setPosts] = useState(data.posts);
+  const [user, setUser] = useState(null);
 
   const option1 = [
     { name: "по дате добавления", id: 1 },
@@ -39,6 +38,14 @@ const BlockPage = ({
       })
       .catch((err) => console.log(err));
 
+  const fetchThisUser = async (id) =>
+    request
+      .get(`/users/${id}`)
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => console.log(err));
+
   const paginationByClick = async (page) =>
     request
       .get("/post", {
@@ -49,7 +56,6 @@ const BlockPage = ({
       })
       .then((res) => {
         setPosts(res.data);
-        console.log("456");
       })
       .catch((err) => console.log(err));
 
@@ -59,7 +65,10 @@ const BlockPage = ({
 
   useEffect(() => {
     setUserId(parseInt(localStorage.getItem("id")));
+    fetchThisUser(localStorage.getItem('id'));
   }, []);
+
+  console.log(user);
 
   return (
     <div className="blockpage">
@@ -91,6 +100,7 @@ const BlockPage = ({
               <div className="blockpage_item">
                 <Product
                   item={item}
+                  loggedUser={user}
                   trustLevel="10"
                   img={
                     item.image === null

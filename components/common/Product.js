@@ -1,7 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import request from "../../services/request";
+import PostApplicationModal from "./PostApplicationModal";
 
-const Product = ({ item, trustLevel, img, profileButton = false, yourPost = false }) => {
+const Product = ({ item, loggedUser, trustLevel, img, yourPost = false }) => {
+  const [openModal, changeOpenModal] = useState(false);
   const deletePost = async (id) =>
     request
       .patch(
@@ -23,6 +25,7 @@ const Product = ({ item, trustLevel, img, profileButton = false, yourPost = fals
   };
   return (
     <>
+      {openModal ? <PostApplicationModal setActive={changeOpenModal} post={item} user={loggedUser} /> : null}
       <div className="post">
         <div className="post__top">
           <div className="post__top_owner">
@@ -50,7 +53,7 @@ const Product = ({ item, trustLevel, img, profileButton = false, yourPost = fals
           <p>{item ? item.message : "Сообщение"}</p>
         </div>
         <div className="post__buttons">
-          {!profileButton ? (
+          {!yourPost ? (
             <>
               <div className="post__button">
                 <img src="/cross-sign.svg" alt="" />
@@ -65,7 +68,7 @@ const Product = ({ item, trustLevel, img, profileButton = false, yourPost = fals
               </div>
             </>
           )}
-          {!yourPost ? <div className="post__button ac-but">Откликнуться</div> : null}
+          {!yourPost ? <div className="post__button ac-but" onClick={() => changeOpenModal(true)}>Откликнуться</div> : null}
           <div className="post__button">
             <img src="/like.svg" alt="" />
             Избранное

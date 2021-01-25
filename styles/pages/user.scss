@@ -27,7 +27,7 @@
 
     &_avatar {
       padding: 0 20px;
-      
+
       img {
         margin-top: 15px;
         border-radius: 50%;
@@ -89,14 +89,96 @@
     }
 
     &_post {
-        background: url('/background.svg') no-repeat;
-        background-attachment: fixed;
-        background-size: cover;
-        background-position: center;
-        padding: 32px 64px;
+      background: url("/background.svg") no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+      padding: 32px 64px;
     }
 
     &_contacts {
+      &-editable {
+        background: url("/bg-contacts.svg") no-repeat;
+        background-size: 100vw;
+        font-family: Arial;
+        padding: 1vw 200px 11vw;
+
+        &-submit{
+          position: absolute;
+          margin-top: 250px;
+          padding: 10px 20px;
+          border-radius: 25px;
+          background-color: $orange;
+          color: white;
+          font-size: 20px;
+          font-weight: 700;
+          cursor: pointer;
+        }
+
+        &-title {
+          margin-left: 80px;
+          h2 {
+            color: $dark-blue;
+            font-size: 40px;
+          }
+        }
+
+        &-item {
+          background-color: #cfe2ff;
+          border: 2px solid $blue;
+          border-radius: 10px;
+          width: 300px;
+          position: relative;
+          padding: 10px;
+          margin-top: 20px;
+
+          > span {
+            padding: 0 5px;
+            position: absolute;
+            background-color: #cfe2ff;
+            top: -10px;
+            color: $blue;
+          }
+
+          > input {
+            background-color: #cfe2ff;
+            font-family: Arial;
+            font-size: 16px;
+            color: $dark-blue;
+            border: none;
+            outline: none;
+            width: 295px;
+          }
+        }
+
+        .town {
+          background: none;
+          border: none;
+          padding: 10px 0;
+
+          .select-show {
+            padding: 15px;
+            width: 300px;
+            border: 2px solid $blue;
+            border-radius: 10px;
+            background-color: #cfe2ff;
+          }
+      
+          > span {
+            position: absolute;
+            top: 1px;
+            left: 13px;
+          }
+        }
+
+        form {
+          display: flex;
+          flex-direction: row;
+          align-items: flex-start;
+          justify-content: space-around;
+        }
+      }
+
       &-items {
         background: url("/bg-contacts.svg") no-repeat;
         background-size: 100vw;
@@ -149,6 +231,33 @@
         }
       }
     }
+  }
+}
+
+.valid {
+  background-color: #cfe2ff;
+  border: 2px solid red;
+  border-radius: 10px;
+  width: 300px;
+  position: relative;
+  padding: 10px;
+  margin-top: 20px;
+
+  > span {
+    background-color: #cfe2ff;
+    position: absolute;
+    top: -10px;
+    color: red;
+  }
+
+  > input {
+    width: 295px;
+    background-color: #cfe2ff;
+    font-family: Arial;
+    font-size: 16px;
+    color: $dark-blue;
+    border: none;
+    outline: none;
   }
 }
 
