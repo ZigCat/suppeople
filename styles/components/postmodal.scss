@@ -137,3 +137,92 @@
         }
     }
 }
+
+@media all and (min-width: 300px) and (max-width: 500px){
+    .postmodal{
+        &-inner{
+            margin-top: 20px;
+            padding: 10px;
+            width: 80%;
+        }
+
+        &-top{
+            display: block;
+            &_user{
+                &-avatar{
+                    img{
+                        width: 60px;
+                        height: 60px;
+                    }
+                }
+
+                &-info{
+                    margin-top: -10px;
+                    h2{
+                        font-size: 16px;
+                    }
+
+                    .select{
+                        &-show{
+                            width: 145px;
+                        }
+                    }
+                }
+            }
+
+            &_img{
+                margin-left: 5px;
+                padding: 7px;
+                width: 210px;
+
+                img{
+                    padding-left: 60px;
+                }
+            }
+        }
+
+        &-desc{
+            width: 95%;
+            padding: 10px 5px;
+
+            textarea{
+                font-size: 12px;
+
+                &::placeholder{
+                    font-size: 12px;
+                }
+            }
+        }
+
+        &-buttons{
+            margin-left: 10px;
+        }
+
+        &-button{
+            border-radius: 15px;
+            font-size: 15px;
+
+            &:first-child{
+                padding: 5px 15px;
+                border: 2px solid $orange;
+                background: rgba($color: $orange, $alpha: 0.4);
+                color: $orange;
+                margin-right: 25px;
+            }
+    
+            &:last-child{
+                padding: 5px 5px;
+                border: 2px solid $dark-blue;
+                background: $bg-blue;
+                color: $dark-blue;
+            }
+    
+            img{
+                display: none;
+                width: 12px;
+                height: 12px;
+                padding-right: 5px;
+            }
+        }
+    }
+}

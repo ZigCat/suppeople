@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import request from "../../services/request";
 import PostApplicationModal from "./PostApplicationModal";
 
@@ -16,6 +16,7 @@ const Product = ({ item, loggedUser, trustLevel, img, yourPost = false }) => {
           },
         }
       )
+      .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
   const processDelete = async () => {
@@ -25,7 +26,13 @@ const Product = ({ item, loggedUser, trustLevel, img, yourPost = false }) => {
   };
   return (
     <>
-      {openModal ? <PostApplicationModal setActive={changeOpenModal} post={item} user={loggedUser} /> : null}
+      {openModal ? (
+        <PostApplicationModal
+          setActive={changeOpenModal}
+          post={item}
+          user={loggedUser}
+        />
+      ) : null}
       <div className="post">
         <div className="post__top">
           <div className="post__top_owner">
@@ -53,22 +60,35 @@ const Product = ({ item, loggedUser, trustLevel, img, yourPost = false }) => {
           <p>{item ? item.message : "Сообщение"}</p>
         </div>
         <div className="post__buttons">
-          {!yourPost ? (
-            <>
-              <div className="post__button">
-                <img src="/cross-sign.svg" alt="" />
-                Пожаловаться
-              </div>
-            </>
+          {item.status !== "COMPLETED" ? (
+            !yourPost ? (
+              <>
+                <div className="post__button">
+                  <img src="/cross-sign.svg" alt="" />
+                  Пожаловаться
+                </div>
+              </>
+            ) : (
+              <>
+                <div onClick={() => processDelete()} className="post__button">
+                  <img src="/cross-sign.svg" alt="" />
+                  Закончить
+                </div>
+              </>
+            )
           ) : (
-            <>
-              <div onClick={() => processDelete()} className="post__button">
-                <img src="/cross-sign.svg" alt="" />
-                Закончить
-              </div>
-            </>
+            <div className="post__button">
+              Выполнен
+            </div>
           )}
-          {!yourPost ? <div className="post__button ac-but" onClick={() => changeOpenModal(true)}>Откликнуться</div> : null}
+          {!yourPost && item.status !== "COMPLETED" ? (
+            <div
+              className="post__button ac-but"
+              onClick={() => changeOpenModal(true)}
+            >
+              Откликнуться
+            </div>
+          ) : null}
           <div className="post__button">
             <img src="/like.svg" alt="" />
             Избранное

@@ -52,6 +52,7 @@ const BlockPage = ({ data, owner }) => {
         params: {
           size: 3,
           page: page,
+          status: 'CREATED',
         },
       })
       .then((res) => {
@@ -67,8 +68,6 @@ const BlockPage = ({ data, owner }) => {
     setUserId(parseInt(localStorage.getItem("id")));
     fetchThisUser(localStorage.getItem('id'));
   }, []);
-
-  console.log(user);
 
   return (
     <div className="blockpage">

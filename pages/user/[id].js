@@ -104,6 +104,7 @@ const User = ({ data }) => {
   return (
     <div className="user">
       <div className="user-inner">
+{/*                   User Bio                    */}
         <div className="user-bio">
           <div className="user-bio-container">
             <div className="user-bio_avatar">
@@ -111,7 +112,7 @@ const User = ({ data }) => {
             </div>
             <div className="user-bio_info">
               <h4>{user ? user.fname + " " + user.lname : "User Account"}</h4>
-              <span className="user-bio_info-trust">уровень доверия 10</span>
+              <span className="user-bio_info-trust">уровень доверия {user ? user.postsQt : "0"}</span>
               <span className="user-bio_info-city">
                 <img src="/pin.svg" alt="" />
                 {user ? user.city.city : "City"}
@@ -120,7 +121,9 @@ const User = ({ data }) => {
           </div>
           <div className="user-bio-bg"></div>
         </div>
+{/*                   End User Bio, User Tabs                */}
         <div className="user-tabs">
+{/*                   USER TABS MAP                        */}
           <div className="user-tabs_map">
             <div
               className={`user-tabs_map-item ${
@@ -147,8 +150,10 @@ const User = ({ data }) => {
               Достижения
             </div>
           </div>
+{/*               END USER TABS MAP, USER ITEMS             */}
           <div className="user-tabs_items">
             {activeTab === 0 ? (
+//                USER BLOCKPAGE TAB
               <div className="user-tabs_post">
                 <UserPage data={data} user={user} />
               </div>
@@ -316,7 +321,7 @@ export async function getServerSideProps(context) {
     props: {
       data: {
         cities: cities,
-        pages: post.headers["total-pages"],
+        pages: post ? post.headers["total-pages"] : 1,
         categories: categories,
         id: id,
       },

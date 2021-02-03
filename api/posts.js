@@ -14,6 +14,7 @@ export const fetchUserPosts = async (id) =>
     .get(`/post`, {
       params: {
         user: id,
+        status: 'CREATED',
         size: 3,
       },
     })

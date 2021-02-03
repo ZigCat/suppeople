@@ -41,7 +41,6 @@ const Registration = ({ cities }) => {
     if(validPhone && validMail){
       if (res !== undefined) {
         let id = res.data;
-        console.log(id);
         localStorage.clear();
         localStorage.setItem("id", id.id);
         localStorage.setItem("login", id.email);

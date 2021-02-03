@@ -149,6 +149,23 @@
         margin: 0;
         font-weight: 300;
       }
+
+      &_headers{
+        margin-left: -10px;
+      }
+
+      &_mine{
+        font-size: 15px;
+      }
+
+      &_other{
+        font-size: 15px;
+        padding: 0 10px;
+      }
+
+      span{
+        padding: 0 10px;
+      }
     }
 
     &_filter{
@@ -158,11 +175,30 @@
       h4{
         font-size: 20px;
         margin: 16px 0 8px;
+        margin-left: 10px;
         padding-right: 20px;
       }
 
       .select{
         padding: 4px 8px;
+      }
+
+      &_active{
+        font-size: 12px;
+        padding: 5px 20px;
+        margin-bottom: 3px;
+      }
+
+      &_disactivated{
+        font-size: 12px;
+        padding: 5px 15px;
+      }
+    }
+
+    &_items{
+      &-create{
+        font-size: 12px;
+        width: 90px;
       }
     }
 

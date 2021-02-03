@@ -7,7 +7,7 @@ const PostModal = ({ categories, user, setActive }) => {
         request.post('/post', form, {
             auth:{
                 username: localStorage.getItem('login'),
-                password:localStorage.getItem('password'),
+                password: localStorage.getItem('password'),
             }
         }).catch(err => console.log(err));
 
