@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import Select from "../components/common/Select";
 import { registration } from "../api/registration";
 import { getCities } from "../api/utils";
-import {validateEmail, validatePhone} from '../services/validator';
+import { validateEmail, validatePhone } from "../services/validator";
 
 const Registration = ({ cities }) => {
   const [status, setStatus] = useState(0);
+  const [resMessage, setMessage] = useState('Что-то пошло не так, повторите попытку...')
   const [isActive, setActive] = useState(false);
   const [validMail, setValidMail] = useState(true);
   const [validPhone, setValidPhone] = useState(true);
@@ -38,19 +39,26 @@ const Registration = ({ cities }) => {
 
   const handleSubmit = async () => {
     const res = await registration(form);
-    if(validPhone && validMail){
+    console.log(form);
+    console.log(res);
+    if (validPhone && validMail) {
       if (res !== undefined) {
-        let id = res.data;
-        localStorage.clear();
-        localStorage.setItem("id", id.id);
-        localStorage.setItem("login", id.email);
-        localStorage.setItem("password", form.password);
-        setStatus(201);
+        if (res.status === 201 || res.status === 200) {
+          let id = res.data;
+          localStorage.clear();
+          localStorage.setItem("id", id.id);
+          localStorage.setItem("login", id.email);
+          localStorage.setItem("password", form.password);
+          setStatus(201);
+        } else {
+          setStatus(600);
+          setMessage(res.data.message);
+        }
       } else {
         setStatus(600);
       }
     } else {
-      setStatus(601)
+      setStatus(601);
     }
   };
 
@@ -76,7 +84,7 @@ const Registration = ({ cities }) => {
                   {status === 0 ? "регистрация" : null}
                   {status === 601 ? "Заполните все необходимые поля" : null}
                   {status !== 0 && status !== 201 && status !== 601
-                    ? "Что-то пошло не так, повторите попытку"
+                    ? resMessage
                     : null}
                 </h2>
               </div>

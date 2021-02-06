@@ -3,7 +3,6 @@ import Pagination from "./Pagination";
 import Product from "./Product";
 import Select from "./Select";
 import request from "../../services/request";
-import PostApplicationModal from "./PostApplicationModal";
 
 const BlockPage = ({ data, owner }) => {
   const [posts, setPosts] = useState(data.posts);
@@ -95,8 +94,8 @@ const BlockPage = ({ data, owner }) => {
             />
           </div>
           <div className="blockpage_items">
-            {posts.map((item) => (
-              <div className="blockpage_item">
+            {posts.map((item, key) => (
+              <div className="blockpage_item" key={key}>
                 <Product
                   item={item}
                   loggedUser={user}

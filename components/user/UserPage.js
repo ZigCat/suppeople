@@ -56,8 +56,6 @@ const UserPage = ({ user, data }) => {
     fetchAppsBySender();
   }, []);
 
-  console.log(apps);
-
   return (
     <div className="blockpage">
       <div className="container">

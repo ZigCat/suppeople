@@ -30,8 +30,8 @@ const Select = ({
           />
           <div className={`select-dropdown_inner ${isActive ? "active" : ""}`}>
             <div className="select-dropdown_items">
-              {options.map((item) => (
-                <div className="select-dropdown_item">
+              {options.map((item, key) => (
+                <div className="select-dropdown_item" key={key}>
                   <span
                     onClick={() => {
                       changeSelect(item);

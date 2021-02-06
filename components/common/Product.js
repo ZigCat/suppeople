@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import request from "../../services/request";
 import PostApplicationModal from "./PostApplicationModal";
 
 const Product = ({ item, loggedUser, trustLevel, img, yourPost = false }) => {
   const [openModal, changeOpenModal] = useState(false);
+  const [button, setButton] = useState(false);
   const deletePost = async (id) =>
     request
       .patch(
@@ -24,6 +25,14 @@ const Product = ({ item, loggedUser, trustLevel, img, yourPost = false }) => {
     console.log(res);
     //window.location.reload();
   };
+
+  useEffect(() => {
+    if(localStorage.getItem('id')){ setButton(true) }
+  }, []);
+
+  console.log(button);
+
+
   return (
     <>
       {openModal ? (
@@ -81,13 +90,15 @@ const Product = ({ item, loggedUser, trustLevel, img, yourPost = false }) => {
               Выполнен
             </div>
           )}
-          {!yourPost && item.status !== "COMPLETED" ? (
-            <div
-              className="post__button ac-but"
-              onClick={() => changeOpenModal(true)}
-            >
-              Откликнуться
-            </div>
+          {button ? (
+            !yourPost && item.status !== "COMPLETED" ? (
+              <div
+                className="post__button ac-but"
+                onClick={() => changeOpenModal(true)}
+              >
+                Откликнуться
+              </div>
+            ) : null
           ) : null}
           <div className="post__button">
             <img src="/like.svg" alt="" />
