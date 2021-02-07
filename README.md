@@ -1,30 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Suppeople - приложение команды BS corporation 
+Цель проекта Suppeople заключается в нахождении помощи для тех, кто в ней нуждается. Результаты этой работы позволят людям, нуждающимся в лекарствах, еде, одежде и прочих вещах, находить волонтеров, способных помочь им.
 
-## Getting Started
+В качестве  гипотезы  выступает факт того, что в условиях пандемии и экономического кризиса многие люди потеряли работу и оказались неспособны обеспечить себя и свои семьи, однако остались и люди, которые могут и хотят предоставить помощь нуждающимся. Но в силу того, что обеим категориям людей проблематично найти друг друга, это усложняет задачу.
 
-First, run the development server:
+Процедура создания проекта состояла из написания Web приложения, использующего клиент-серверную архитектуру.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+В качестве  методов создания  серверной части применялись: язык Java для back-end, СУБД SQLite; для клиентской части – фреймворк Next.js на базе языка Javascript.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Новизна проекта заключается в том, что сейчас нет сервиса, который поможет нуждающимся найти тех, кто им поможет. Также одним из преимуществ нашего сервиса является отслеживание выполненных волонтерами поручений, что поможет им в будущем использовать их профиль как дополнительный актив, выгодно отличающий волонтера при поступлении в университет или приеме на работу.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+После проделанной нами работой можно сделать  вывод: проект Suppeople сможет установить связь между волонтерами и нуждающимися людьми, а также обеспечит волонтеру дополнительный актив.
 
-## Learn More
+Область практического использования проекта. Наш проект будет функционировать на территории РК.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+На данном аккаунте Github размещен код серверной части (Backend приложения), фронт размещен на этом репозитории: https://github.com/BogdanPronin/suppeople
