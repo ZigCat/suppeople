@@ -43,7 +43,7 @@ const Layout = ({ children }) => {
             </div>
             <div className="layout-top_item">
               <div className="layout-top_about">
-                <a href="#">О проекте</a>
+                <a href="/about">О проекте</a>
               </div>
               <div className="layout-top_profile">
                 <a

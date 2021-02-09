@@ -1,66 +1,127 @@
-@import './utils/vars.scss';
+@import "./utils/vars.scss";
 
-body{
-    margin: 0px;
+body {
+  margin: 0px;
 }
 
-.container{
-    width: 700px;
-    margin: 0 auto;
+.container {
+  width: 700px;
+  margin: 0 auto;
 }
 
-.container-head{
-    width: 1300px;
-    margin: 0 auto;
+.container-head {
+  width: 1150px;
+  margin: 0 auto;
+}
+
+.aboutpage {
+  padding: 0 64px;
+  background: url("/background.svg") no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+
+  &-inner {
+    background-color: white;
+    padding: 20px;
+    color: $dark-blue;
+    font-family: Arial;
+
+    h2 {
+      font-size: 40px;
+      font-weight: 700;
+    }
+
+    p {
+      font-size: 20px;
+    }
+  }
 }
 
 /* width */
 ::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: rgba($color: white, $alpha: 0.1);
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: $dark-blue; 
-  }
-
-@media all and (max-width: 350px){
-    .container-head{
-        width: 300px;
-    }
-
-    .container{
-        width: 280px;
-    }
+  width: 10px;
 }
 
-@media all and (max-width: 500px) and (min-width: 351px){
-    .container-head{
-        width: 330px;
-    }
-
-    .container{
-        width: 330px;
-    }
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgba($color: white, $alpha: 0.1);
 }
 
-@import './components/product.scss';
-@import './components/search.scss';
-@import './components/layout.scss';
-@import './components/select.scss';
-@import './components/blockpage.scss';
-@import './components/pagination.scss';
-@import './components/usermodal.scss';
-@import './components/postmodal.scss';
-@import './components/searchmodal.scss';
-@import './components/loading.scss';
-@import './components/mobmodal.scss';
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $dark-blue;
+}
 
-@import './pages/main.scss';
-@import './pages/registration.scss';
-@import './pages/user.scss';
+@media all and (max-width: 350px) {
+  .container-head {
+    width: 300px;
+  }
+
+  .container {
+    width: 280px;
+  }
+
+  .aboutpage {
+    margin-top: 55px;
+    padding: 0 10px;
+
+    &-inner {
+      padding: 10px;
+      padding-top: 0;
+
+      h2 {
+        font-size: 25px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 500px) and (min-width: 351px) {
+  .container-head {
+    width: 330px;
+  }
+
+  .container {
+    width: 330px;
+  }
+
+  .aboutpage {
+    padding: 0 10px;
+    margin-top: 55px;
+
+    &-inner {
+      padding: 15px;
+
+      padding-top: 0;
+
+      h2 {
+        font-size: 25px;
+      }
+
+      p {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+@import "./components/product.scss";
+@import "./components/search.scss";
+@import "./components/layout.scss";
+@import "./components/select.scss";
+@import "./components/blockpage.scss";
+@import "./components/pagination.scss";
+@import "./components/usermodal.scss";
+@import "./components/postmodal.scss";
+@import "./components/searchmodal.scss";
+@import "./components/loading.scss";
+@import "./components/mobmodal.scss";
+
+@import "./pages/main.scss";
+@import "./pages/registration.scss";
+@import "./pages/user.scss";
