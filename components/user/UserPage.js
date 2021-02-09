@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchAppsBySender } from "../../api/applications";
 import request from "../../services/request";
+import Application from "../common/Application";
 import Pagination from "../common/Pagination";
 import PostModal from "../common/PostModal";
 import Product from "../common/Product";
@@ -39,7 +40,6 @@ const UserPage = ({ user, data }) => {
       })
       .then((res) => {
         setPost(res);
-        console.log(res);
       })
       .catch((err) => console.log(err));
 
@@ -128,16 +128,7 @@ const UserPage = ({ user, data }) => {
               : apps !== null
               ? apps.map((item, index) => (
                   <div className="blockpage_item" key={index}>
-                    <Product
-                      item={item}
-                      trustLevel="10"
-                      img={
-                        item.image === null
-                          ? "placeholder-image.svg"
-                          : `posters/${item.image}`
-                      }
-                      yourPost={userId === item.user.id}
-                    />
+                    <Application item={item} />
                   </div>
                 ))
               : null}

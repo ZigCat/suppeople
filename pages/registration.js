@@ -39,8 +39,6 @@ const Registration = ({ cities }) => {
 
   const handleSubmit = async () => {
     const res = await registration(form);
-    console.log(form);
-    console.log(res);
     if (validPhone && validMail) {
       if (res !== undefined) {
         if (res.status === 201 || res.status === 200) {
